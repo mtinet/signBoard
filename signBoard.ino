@@ -40,14 +40,14 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(24, 8, PIN,
   NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
   NEO_GRB            + NEO_KHZ800);
 
-const uint16_t colors[] = {
-  matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255) };
+//const uint16_t colors[] = {
+//  matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255) };
 
 void setup() {
   matrix.begin();
   matrix.setTextWrap(false);
   matrix.setBrightness(100);
-  matrix.setTextColor(colors[0]);
+  matrix.setTextColor(matrix.Color(int(random(255)), int(random(255)), int(random(255))));
 }
 
 int x    = matrix.width();
@@ -59,9 +59,10 @@ void loop() {
   matrix.print(F("Welcome to Camp 51.9"));
   if(--x < -120) {
     x = matrix.width();
-    if(++pass >= 3) pass = 0;
-    matrix.setTextColor(colors[pass]);
+    //if(++pass >= 3) pass = 0;
+    //matrix.setTextColor(colors[pass]);
+    matrix.setTextColor(matrix.Color(int(random(255)), int(random(255)), int(random(255))));
   }
   matrix.show();
-  delay(30);
+  delay(50);
 }
